@@ -41,11 +41,13 @@ jobs:
 
       - name: Update feeds
         run: |
+          cp -rf scripts/*.sh lede/
           cd   lede
-           sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
-          ./scripts/feeds update -a
-          rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
-          ./scripts/feeds install -a
+          chmod +x  diy-script.sh
+          chmod +x  preset-clash-core.sh
+          ./diy-script.sh
+          ./preset-clash-core.sh
+
           
       - name: Costom configure file
         run: |
