@@ -37,19 +37,22 @@ jobs:
         run: |
           git clone --depth=1 https://github.com/hanwckf/immortalwrt-mt798x.git  lede
           cp 3.config ./lede/.config
-          mv ./lede/* ./
+          
 
       - name: Update feeds
         run: |
+          cd   lede
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           
       - name: Costom configure file
         run: |
+          cd   lede
           make defconfig
           
       - name: Compile firmware
         run: |
+          cd   lede
           echo -e "$(nproc) thread build."
           make -j$(nproc)
           
@@ -57,5 +60,5 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: OpenWrt_firmware
-          path: bin/targets/
+          path: lede/bin/targets/
           
