@@ -36,13 +36,15 @@ jobs:
       - name: Download lede
         run: |
           git clone --depth=1 https://github.com/hanwckf/immortalwrt-mt798x.git  lede
-          cp 3.config ./lede/.config
+          cp 30.config ./lede/.config
           
 
       - name: Update feeds
         run: |
           cd   lede
+           sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
           ./scripts/feeds update -a
+          rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
           ./scripts/feeds install -a
           
       - name: Costom configure file
