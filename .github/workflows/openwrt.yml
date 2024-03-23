@@ -35,7 +35,7 @@ jobs:
           
       - name: Download lede
         run: |
-          git clone --depth=1 https://github.com/padavanonly/immortalwrtARM -b mt7986  lede
+          git clone --depth=1 https://github.com/padavanonly/immortalwrt-mt798x  lede
           cp 6000mr.config ./lede/.config
           
 
