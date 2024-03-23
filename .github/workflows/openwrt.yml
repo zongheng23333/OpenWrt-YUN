@@ -31,7 +31,7 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.eu.org/init_build_environment.sh)'
+          curl -s https://build-scripts.immortalwrt.eu.org/init_build_environment.sh | sudo bash
           
       - name: Download lede
         run: |
